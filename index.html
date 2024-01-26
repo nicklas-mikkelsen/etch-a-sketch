@@ -10,23 +10,17 @@
 <body>
     <h1>Welcome to Etch-a-Sketch</h1>
     
-    <div class="grid-btn">
-        <button class="grid-size">Choose Sketch Board Size and Remove drawings</button>
-    </div>
-
-    <h3 class="color">Change color:</h3>
-    <div class="color-btns">
-        <button class="color-btn" id="black"></button>
-        <button class="color-btn" id="green"></button>
-        <button class="color-btn" id="red"></button>
-        <button class="color-btn" id="blue"></button>
-        <button class="color-btn" id="eraser">Eraser</button>
+ 
+    <h3>Change color and Line width:</h3>
+    <div class="toolbar">
+        <input id="stroke" name="stroke" type="color">
+        <input id="lineWidth" name="lineWidth" type="number" value="5"> 
+        <button id="clear">Clear</button>  
     </div>
     
-    <div class="sketch">
-        <div class="sketch container">
-            <!-- <div class="sketchBox">Hello</div> -->
-        </div>
+    <div class="drawing container">
+        <canvas id="canvas" class="drawing area" width="960" height="520">
+        </canvas>
     </div>
 </body>
 </html>

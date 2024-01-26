@@ -1,73 +1,60 @@
-const gridValue = document.querySelector('.grid-size')
-const sketchContainer = document.querySelector('.sketch.container')
-const blackBtn = document.querySelector('#black')
-const greenBtn = document.querySelector('#green')
-const redBtn = document.querySelector('#red')
-const blueBtn = document.querySelector('#blue')
-const eraserBtn = document.querySelector('#eraser')
+const gridValue = document.querySelector('.grid-size');
+const canvas = document.querySelector('.drawing.area');
+const ctx = canvas.getContext('2d');
+const toolbar = document.querySelector('.toolbar');
+
+const canvasOffsetX = canvas.offsetLeft;
+const canvasOffsetY = canvas.offsetTop;
 
 
-let size = 0;
-gridValue.addEventListener('click', e => {
-    // while (sketchContainer.firstChild) {
-    //     sketchContainer.firstChild.remove()
-    // }
-    size = prompt("What grid size do you want? E.g. 10 = 100 x 100 grid")
-    if (size <= 100) {
-        size = size * 10
-        drawGrid(size, size);
-        makeSmallGrids(size);
-    } else alert("Entered value has to a number and lower than 100")
-   
+let isPainting = false;
+let lineWidth = 5;
+let startX;
+let startY;
+
+toolbar.addEventListener('click', e => {
+    if (e.target.id === 'clear') {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+});
+
+toolbar.addEventListener('change', e => {
+    if (e.target.id === 'stroke') {
+        ctx.strokeStyle = e.target.value;
+    }
+    if (e.target.id === 'lineWidth') {
+        lineWidth = e.target.value;
+    }
 })
 
-function drawGrid(width, height) {
-    width = sketchContainer.style.width = size + "px"
-    height = sketchContainer.style.height = size + "px"
-    newGrid = width * height;
-}
- 
-function makeSmallGrids(value) {
-    const div = document.createElement('div')
-    div.classList.add('smallDivs')
-    let i = 0;
-    while (i < value) {
-        sketchContainer.appendChild(div.cloneNode(true))
-        i++;
-        }
+const draw = (e) => {
+    if(!isPainting) {
+        return;
+    } 
+    ctx.lineWidth = lineWidth;
+    ctx.lineCap = 'round';
+    ctx.lineTo(e.clientX - canvasOffsetX, e.clientY - canvasOffsetY);
+    ctx.stroke();
 }
 
-//     const div = document.createElement('div')
-//     div.classList.add('sketchBox')
-    
-//     let i = 0;
-//     while (i < size) {
-//         sketchContainer.appendChild(div.cloneNode(true))
-//         i++
-//     }
-// }
+canvas.addEventListener('mousedown', (e) => {
+    isPainting = true;
+    startX = e.clientX;
+    startY = e.clientY;
+});
+
+canvas.addEventListener('mouseup', e => {
+    isPainting = false;
+    ctx.stroke();
+    ctx.beginPath();
+})
+
+canvas.addEventListener('mousemove', draw);
 
 
 
 
 
 
-// const colors = {
-//         black: 'black',
-//         green: 'green',
-//         red: 'red',
-//         blue: 'blue',
-//         eraser: 'eraser'
-//     }
-// function pickedColor () {
-//     switch(color) {
-//         case blackBtn.addEventListener('click'):
-//             color = colors.black
-//             break;
-        
-//     }
-//     let currentColor = ''
-//     e.target.style.backgroundColor = colors[currentColor];
-// }
 
-// sketchBox.addEventListener('mouseover', pickedColor);
+
