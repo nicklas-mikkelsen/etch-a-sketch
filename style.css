@@ -1,0 +1,101 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: burlywood;
+}
+h1 {
+    text-align: center;
+    padding: 40px 0px;
+}
+
+.grid-btn {
+    text-align: center;
+    
+}
+.grid-size {
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 8px;
+    font-style: italic;
+}
+
+h3 {
+    text-align: center;
+    padding-top: 50px;
+}
+
+.color-btns {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+
+.color-btn {
+    border: none;
+    background: none;
+    cursor: pointer; 
+    height: 40px;
+    width: 60px;
+    transition: 120ms;
+}
+.color-btn:hover{
+    transform: scale(1.2);
+}
+
+#black {
+    background-color: black;
+}
+#green {
+    background-color: green;
+}
+#red {
+    background-color: red;
+}
+#blue {
+    background-color: blue;
+}
+#eraser{
+    background-color: white;
+    border: 1px solid black
+}
+
+
+.sketch {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.sketch.container {
+    border: 2px solid black;
+    max-width: 964px;
+    text-align: center;
+    background-color: white;
+    /* justify-content: ; */
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.smallDivs {
+    width: 2px;
+    height: 2px;
+    border: 0.5px solid blue
+}
+/* .sketchBox:hover {
+    background-color: blue;
+    transition: ease 0.1s all;
+} */
+
+/* .sketchBox {
+    height: 60px;
+    width: 60px;
+    border: 1px solid blue;
+} */
